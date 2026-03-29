@@ -22,7 +22,7 @@
   );
 
   window.vote = async function(option) {
-    const { error } = await client.from('votes').insert([{ option }]);
+    const { error } = await client.from('votes').insert([{ Option }]);
     if (error) console.error(error);
     loadVotes();
   }
