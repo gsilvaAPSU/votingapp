@@ -21,7 +21,7 @@
     "sb_publishable_XfjPUXuIn6ZehHdbX8RfMw_MISCNjEO"
   );
 
-  async function vote(option) {
+  windows.vote = async function(option) {
     const { error } = await client.from('votes').insert([{ option }]);
     if (error) console.error(error);
     loadVotes();
