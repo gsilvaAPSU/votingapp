@@ -21,11 +21,15 @@
     "sb_publishable_XfjPUXuIn6ZehHdbX8RfMw_MISCNjEO"
   );
 
-  window.vote = async function(option) {
-    const { error } = await client.from('votes').insert([{ Option }]);
-    if (error) console.error(error);
-    loadVotes();
-  }
+window.vote = async function(option) {
+  const { error } = await client.from('votes').insert([
+    { Option: option }
+  ]);
+
+  if (error) console.error(error);
+
+  loadVotes();
+}
 
   async function loadVotes() {
     const { data, error } = await client.from('votes').select('*');
