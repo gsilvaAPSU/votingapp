@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voting App</title>
+</head>
+<body>
+
+<h1>Vote!</h1>
+
+<button onclick="vote('A')">Vote A</button>
+<button onclick="vote('B')">Vote B</button>
+
+<h2>Results:</h2>
+<p>A: <span id="countA">0</span></p>
+<p>B: <span id="countB">0</span></p>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   const client = window.supabase.createClient(
@@ -24,3 +40,6 @@
 
   loadVotes();
 </script>
+
+</body>
+</html>
