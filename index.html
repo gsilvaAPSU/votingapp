@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voting App</title>
+</head>
+<body>
+
+<h1>Vote!</h1>
+
+<button onclick="vote('A')">Vote A</button>
+<button onclick="vote('B')">Vote B</button>
+
+<h2>Results:</h2>
+<p>A: <span id="countA">0</span></p>
+<p>B: <span id="countB">0</span></p>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+  const supabase = supabase.createClient(
+    "https://dqdjswrskvnfzibpfrhw.supabase.co",
+    "sb_publishable_XfjPUXuIn6ZehHdbX8RfMw_MISCNjEO"
+  );
+
+  async function vote(option) {
+    await supabase.from('votes').insert([{ option }]);
+    loadVotes();
+  }
+
+  async function loadVotes() {
+    const { data } = await supabase.from('votes').select('*');
+
+    let countA = data.filter(v => v.option === 'A').length;
+    let countB = data.filter(v => v.option === 'B').length;
+
+    document.getElementById('countA').innerText = countA;
+    document.getElementById('countB').innerText = countB;
+  }
+
+  loadVotes();
+</script>
+
+</body>
+</html>
